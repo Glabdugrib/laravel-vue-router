@@ -43,9 +43,15 @@
             </div>
 
             {{-- Reset & submit --}}
-            <div class="text-center">
-               <button type="reset" class="btn btn-secondary">Reset</button>
-               <button type="submit" class="btn btn-primary">Submit</button>
+            <div class="button-wrapper text-center">
+               <form action="{{ route( 'admin.posts.destroy', $post ) }}" method="POST">
+                  @csrf
+                  @method('DELETE')
+                  
+                  <button type="submit" class="btn btn-outline-danger" onclick="return confirm('Sicuro?')"> Elimina </button>
+               </form> 
+               <button type="reset" class="btn btn-outline-secondary">Reset</button>
+               <button type="submit" class="btn btn-outline-primary">Submit</button>
             </div>
             
          </form> 
