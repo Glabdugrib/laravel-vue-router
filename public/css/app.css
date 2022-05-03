@@ -10962,3 +10962,21 @@ a.text-dark:focus {
   }
 }
 
+table,
+th,
+td {
+  text-align: center;
+  border: 2px solid white;
+  border-collapse: collapse;
+}
+
+th {
+  padding: 5px 20px !important;
+  background-color: rgba(0, 128, 0, 0.3);
+}
+
+td {
+  background-color: rgba(0, 128, 0, 0.1);
+  padding: 5px;
+}
+

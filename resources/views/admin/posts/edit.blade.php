@@ -35,7 +35,7 @@
             {{-- Publish date --}}
             <div class="form-group">
                <label for="name" class="form-label">Publish date</label>
-               <input type="date" name="published_at" id="published_at" class="@error('published_at') is-invalid @enderror form-control" value="{{ old('published_at') ? old('published_at') : $post->published_at }}" placeholder="Insert post's publish date">
+               <input type="date" name="published_at" id="published_at" class="@error('published_at') is-invalid @enderror form-control" value="{{ old('published_at') ? old('published_at') : substr($post->published_at, 0, 10) }}" placeholder="Insert post's publish date">
 
                @error('published_at')
                   <div class="alert alert-danger">{{ $message }}</div>

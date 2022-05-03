@@ -41,16 +41,6 @@
                @enderror
             </div>
 
-            {{-- Thumbnail --}}
-            {{-- <div class="form-group">
-               <label for="name" class="form-label">Cover</label>
-               <input type="text" name="cover" id="cover" class="@error('cover') is-invalid @enderror form-control" value="{{ old('cover') }}" placeholder="Insert post's cover">
-
-               @error('cover')
-                  <div class="alert alert-danger">{{ $message }}</div>
-               @enderror
-            </div> --}}
-
             {{-- Reset & submit --}}
             <div class="text-center">
                <button type="reset" class="btn btn-secondary">Reset</button>
