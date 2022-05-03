@@ -16,7 +16,7 @@ class PostController extends Controller
     */
    public function index()
    {
-      $posts = Post::all();
+      $posts = Post::orderBy('created_at','desc')->limit(20)->get();
 
       return view('admin.posts.index', compact('posts') );
    }
@@ -42,26 +42,12 @@ class PostController extends Controller
       $request->validate([
          'title' => 'required|string|min:5|max:100',
          'content' => 'required|string|min:5|max:1000',
-         // 'cover' => 'nullable|url',
-         // 'slug' => 'nullable|string',
          'published_at' => 'nullable|date|before_or_equal:today',
       ]);
 
       $data = $request->all();
 
-      $slug = Str::slug( $data['title'] );
-      $slug_base = $slug;
-
-      $counter = 1;
-
-      // Cerca un post con lo slug indicato
-      $post_present = Post::where('slug', $slug)->first();
-
-      while( $post_present ) {
-         $slug = $slug_base . '-' . $counter;
-         $counter++;
-         $post_present = Post::where('slug', $slug)->first();
-      }
+      $slug = Post::getUniqueSlug( $data['title'] );
 
       $post = new Post();
 
@@ -85,37 +71,54 @@ class PostController extends Controller
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
+   /**
+    * Show the form for editing the specified resource.
+    *
+    * @param  int  $id
+    * @return \Illuminate\Http\Response
+    */
+   public function edit(Post $post)
+   {
+      return view('admin.posts.edit', compact('post'));
+   }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
+   /**
+    * Update the specified resource in storage.
+    *
+    * @param  \Illuminate\Http\Request  $request
+    * @param  int  $id
+    * @return \Illuminate\Http\Response
+    */
+   public function update(Request $request, Post $post)
+   {
+      $request->validate([
+         'title' => 'required|string|min:5|max:100',
+         'content' => 'required|string|min:5|max:1000',
+         'published_at' => 'nullable|date|before_or_equal:today',
+      ]);
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
+      $data = $request->all();
+
+      if( $post->title != $data['title'] ) {
+         $slug = Post::getUniqueSlug( $data['title'] );
+         $data['slug'] = $slug;
+      }
+
+      $post->update( $data );
+
+      return redirect()->route('admin.posts.index');
+   }
+
+   /**
+    * Remove the specified resource from storage.
+    *
+    * @param  int  $id
+    * @return \Illuminate\Http\Response
+    */
+   public function destroy(Post $post)
+   {
+      $post->delete();
+
+      return redirect()->route('admin.posts.index');
+   }
 }
