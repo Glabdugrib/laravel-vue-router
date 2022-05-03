@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class PostController extends Controller
 {
@@ -20,26 +21,58 @@ class PostController extends Controller
       return view('admin.posts.index', compact('posts') );
    }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
+   /**
+    * Show the form for creating a new resource.
+    *
+    * @return \Illuminate\Http\Response
+    */
+   public function create()
+   {
+      return view('admin.posts.create');
+   }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
+   /**
+    * Store a newly created resource in storage.
+    *
+    * @param  \Illuminate\Http\Request  $request
+    * @return \Illuminate\Http\Response
+    */
+   public function store(Request $request)
+   {
+      $request->validate([
+         'title' => 'required|string|min:5|max:100',
+         'content' => 'required|string|min:5|max:1000',
+         // 'cover' => 'nullable|url',
+         // 'slug' => 'nullable|string',
+         'published_at' => 'nullable|date|before_or_equal:today',
+      ]);
+
+      $data = $request->all();
+
+      $slug = Str::slug( $data['title'] );
+      $slug_base = $slug;
+
+      $counter = 1;
+
+      // Cerca un post con lo slug indicato
+      $post_present = Post::where('slug', $slug)->first();
+
+      while( $post_present ) {
+         $slug = $slug_base . '-' . $counter;
+         $counter++;
+         $post_present = Post::where('slug', $slug)->first();
+      }
+
+      $post = new Post();
+
+      $post->fill( $data );
+      $post->slug = $slug;
+
+      $post->save();
+
+      return redirect()->route('admin.posts.index');
+
+   }
 
     /**
      * Display the specified resource.
