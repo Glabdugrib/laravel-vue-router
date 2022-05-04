@@ -20,8 +20,9 @@ class PostSeeder extends Seeder
 
          $post->title = $faker->words(7, true);
          $post->slug = Str::slug( $post->title );
-         $post->content = $faker->paragraphs(10, true);
+         $post->content = $faker->paragraphs(5, true);
          $post->published_at = $faker->randomElement([ null, $faker->dateTime() ]);
+         $post->category_id = $faker->randomElement([ null, 1, 2, 3, 4, 5, 6 ]);
 
          $post->save();
       }

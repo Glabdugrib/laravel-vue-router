@@ -11,7 +11,8 @@ class Post extends Model
       'title',
       'content',
       'published_at',
-      'slug'
+      'slug',
+      'category_id'
    ];
 
    public static function getUniqueSlug( $title ) {
@@ -35,5 +36,9 @@ class Post extends Model
    public function getRouteKeyName()
    {
       return 'slug';
+   }
+
+   public function category() {
+      return $this->belongsTo('App\Category');
    }
 }

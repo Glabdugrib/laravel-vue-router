@@ -21,6 +21,21 @@
                @enderror
             </div>
 
+            {{-- Categoria --}}
+            <div class="form-group">
+               <label for="category_id">Category</label>
+               <select class="form-control @error('category_id') is-invalid @enderror" id="category_id" name="category_id">
+                  <option value="">-- Insert category --</option>
+                  @foreach ($categories as $el)
+                     <option {{ old('category_id') == $el->id ? 'selected' : '' }} value="{{ $el->id }}">{{ $el->name }}</option>
+                  @endforeach
+               </select>
+
+               @error('category_id')
+                  <div class="alert alert-danger">{{ $message }}</div>
+               @enderror
+            </div>
+
             {{-- Contenuto --}}
             <div class="form-group">
                <label for="name" class="form-label">Content</label>
