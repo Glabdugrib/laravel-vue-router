@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Post;
 use App\Category;
 use Illuminate\Http\Request;
-use Illuminate\Support\Str;
+// use Illuminate\Support\Str;
 
 class PostController extends Controller
 {
@@ -18,9 +18,6 @@ class PostController extends Controller
    public function index()
    {
       $posts = Post::with('category')->orderBy('created_at','desc')->limit(20)->get();
-
-      // $posts = Post::orderBy('created_at','desc')->limit(20)->get();
-      // dd($posts);
 
       return view('admin.posts.index', compact('posts') );
    }
@@ -102,6 +99,7 @@ class PostController extends Controller
          'title' => 'required|string|min:5|max:100',
          'content' => 'required|string|min:5|max:1000',
          'published_at' => 'nullable|date|before_or_equal:today',
+         'category_id' => 'nullable|exists:categories,id'
       ]);
 
       $data = $request->all();

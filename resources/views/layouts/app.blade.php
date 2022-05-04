@@ -37,11 +37,23 @@
                            <li class="nav-item @if( Route::is('admin.home') ) active @endif">
                               <a class="nav-link" href="{{ route('admin.home') }}">Home</a>
                            </li>
-                           <li class="nav-item @if( Route::is('admin.posts.index') ) active @endif">
-                              <a class="nav-link" href="{{ route('admin.posts.index') }}" >Post list</a>
+                           <li class="nav-item dropdown @if( Route::is('admin.posts.*') ) active @endif">
+                              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-expanded="false">
+                                 Posts
+                              </a>
+                              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item @if( Route::is('admin.posts.index') ) active @endif" href="{{ route('admin.posts.index') }}">View list</a>
+                                <a class="dropdown-item @if( Route::is('admin.posts.create') ) active @endif" href="{{ route('admin.posts.create') }}">Add new</a>
+                              </div>
                            </li>
-                           <li class="nav-item @if( Route::is('admin.posts.create') ) active @endif">
-                              <a class="nav-link" href="{{ route('admin.posts.create') }}">New post</a>
+                           <li class="nav-item dropdown @if( Route::is('admin.categories.*') ) active @endif">
+                              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-expanded="false">
+                                 Categories
+                              </a>
+                              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item @if( Route::is('admin.categories.index') ) active @endif" href="{{ route('admin.categories.index') }}">View list</a>
+                                <a class="dropdown-item @if( Route::is('admin.categories.create') ) active @endif" href="{{ route('admin.categories.create') }}">Add new</a>
+                              </div>
                            </li>
                         @endif
                      </ul>

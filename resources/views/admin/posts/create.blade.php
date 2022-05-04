@@ -57,11 +57,10 @@
             </div>
 
             {{-- Reset & submit --}}
-            <div class="text-center">
+            <div class="button-wrapper">
                <button type="reset" class="btn btn-secondary">Reset</button>
                <button type="submit" class="btn btn-primary">Submit</button>
-            </div>
-            
+            </div>   
          </form> 
 
       </div>

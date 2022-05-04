@@ -8,14 +8,14 @@
       <div class="col-5">
 
          <h2 class="mb-4">Edit post: {{ $post->title }}</h2>
-         <form action="{{ route('admin.posts.update', $post) }}" method="POST" id="edit-form">
+         <form action="{{ route('admin.posts.update', $post) }}" method="POST">
             @csrf
             @method('PUT')
             
             {{-- Titolo --}}
             <div class="form-group">
                <label for="name" class="form-label">Title</label>
-               <input type="text" name="title" id="title" class="@error('title') is-invalid @enderror form-control" value="{{ old('title', $post->title) }}" placeholder="Insert post's title">
+               <input type="text" name="title" id="title" class="@error('title') is-invalid @enderror form-control" value="{{ old('title', optional($post)->title) }}" placeholder="Insert post's title">
 
                @error('title')
                   <div class="alert alert-danger">{{ $message }}</div>
@@ -28,7 +28,7 @@
                <select class="form-control @error('category_id') is-invalid @enderror" id="category_id" name="category_id">
                   <option value="">-- Insert category --</option>
                   @foreach ($categories as $el)
-                     <option {{ old('category_id', $post->category_id) == $el->id ? 'selected' : '' }} value="{{ $el->id }}">{{ $el->name }}</option>
+                     <option {{ old('category_id', optional($post)->category_id) == $el->id ? 'selected' : '' }} value="{{ $el->id }}">{{ $el->name }}</option>
                   @endforeach
                </select>
 
@@ -40,7 +40,7 @@
             {{-- Contenuto --}}
             <div class="form-group">
                <label for="name" class="form-label">Content</label>
-               <textarea name="content" id="content" cols="30" rows="10" class="@error('content') is-invalid @enderror form-control" placeholder="Insert post's content">{{ old('content', $post->content) }}</textarea>
+               <textarea name="content" id="content" cols="30" rows="10" class="@error('content') is-invalid @enderror form-control" placeholder="Insert post's content">{{ old('content', optional($post)->content) }}</textarea>
             
                @error('content')
                   <div class="alert alert-danger">{{ $message }}</div>
@@ -58,17 +58,9 @@
             </div>
 
             {{-- Reset & submit --}}
-            <div class="button-wrapper text-center">
-               {{-- <form action="{{ route( 'admin.posts.destroy', $post ) }}" method="POST" id="delete-form">
-                  @csrf
-                  @method('DELETE')
-                  
-                  <button for="delete-form" type="submit" class="btn btn-outline-danger" onclick="return confirm('Sicuro?')"> Elimina </button>
-               </form>  --}}
-               <button for="edit-form" type="reset" class="btn btn-outline-secondary">Reset</button>
-               <button for="edit-form" type="submit" class="btn btn-outline-primary">Submit</button>
-            </div>
-            
+            <div class="button-wrapper">
+               <button type="submit" class="btn btn-outline-primary">Submit</button>
+            </div> 
          </form> 
 
       </div>

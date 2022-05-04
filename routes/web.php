@@ -30,4 +30,6 @@ Route::middleware('auth')
    Route::get('/home', 'HomeController@index')->name('home');
 
    Route::resource('posts', 'PostController')->except('show');
+
+   Route::resource('categories', 'CategoryController')->except('show');
 });
