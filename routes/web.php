@@ -32,4 +32,6 @@ Route::middleware('auth')
    Route::resource('posts', 'PostController')->except('show');
 
    Route::resource('categories', 'CategoryController')->except('show');
+
+   Route::resource('tags', 'TagController')->except('show');
 });

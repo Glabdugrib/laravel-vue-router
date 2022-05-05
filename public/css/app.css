@@ -10988,3 +10988,14 @@ td {
   align-items: center;
 }
 
+.swatch {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 20px;
+  aspect-ratio: 1;
+  border: 1px solid white;
+  border-radius: 50%;
+}
+

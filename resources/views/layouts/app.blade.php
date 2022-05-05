@@ -55,6 +55,15 @@
                                 <a class="dropdown-item @if( Route::is('admin.categories.create') ) active @endif" href="{{ route('admin.categories.create') }}">Add new</a>
                               </div>
                            </li>
+                           <li class="nav-item dropdown @if( Route::is('admin.tags.*') ) active @endif">
+                              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-expanded="false">
+                                 Tags
+                              </a>
+                              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item @if( Route::is('admin.tags.index') ) active @endif" href="{{ route('admin.tags.index') }}">View list</a>
+                                <a class="dropdown-item @if( Route::is('admin.tags.create') ) active @endif" href="{{ route('admin.tags.create') }}">Add new</a>
+                              </div>
+                           </li>
                         @endif
                      </ul>
 
