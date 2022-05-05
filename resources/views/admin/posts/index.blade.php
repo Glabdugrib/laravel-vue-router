@@ -10,6 +10,7 @@
          <th>Title</th>
          <th>Slug</th>
          <th>Category</th>
+         <th>Tags</th>
          {{-- <th>Content</th> --}}
          {{-- <th>Cover</th> --}}
          <th>Published at</th>
@@ -24,6 +25,11 @@
             <td>{{ $el->title }}</td>
             <td>{{ $el->slug }}</td>
             <td>{{ $el->category ? $el->category->name : '-' }}</td>
+            <td>
+               @foreach ($el->tags as $t)
+                  <span>{{ $t->name }}</span>
+               @endforeach
+            </td>
             {{-- <td>{{ $el->content }}</td> --}}
             {{-- <td>{{ $el->cover ? $el->cover : '-' }}</td> --}}
             <td>{{ substr($el->published_at, 0, 10) }}</td>

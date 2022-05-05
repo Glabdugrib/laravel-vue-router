@@ -36,6 +36,20 @@
                @enderror
             </div>
 
+            {{-- Tag --}}
+            <div class="form-group">
+               <label>Tags</label>
+               {{-- @foreach ($collection as $item)
+                   
+               @endforeach --}}
+               <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                  <label class="form-check-label" for="defaultCheck1">
+                    Default checkbox
+                  </label>
+                </div>
+            </div>
+
             {{-- Contenuto --}}
             <div class="form-group">
                <label for="name" class="form-label">Content</label>
