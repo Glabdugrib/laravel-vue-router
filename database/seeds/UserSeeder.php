@@ -3,6 +3,7 @@
 use App\User;
 use Illuminate\Database\Seeder;
 use Faker\Generator as Faker;
+use Illuminate\Support\Facades\Hash;
 
 class UserSeeder extends Seeder
 {
@@ -17,7 +18,7 @@ class UserSeeder extends Seeder
 
       $user->name = 'Simone Sada';
       $user->email = 'si.sada93@gmail.com';
-      $user->password = '$2y$10$JtgjO8EC9NehYwSNNZ8Ig.4eHEnX3n1iyqMJJpP9v.ZjRE3Po9ZkK';
+      $user->password = Hash::make('Password1');
 
       $user->save();
    }

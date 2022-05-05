@@ -7,7 +7,7 @@
    <div class="row justify-content-center">
       <div class="col-5">
 
-         <h2 class="mb-4">Edit category: {{ $category->name }}</h2>
+         <h2 class="mb-4">Edit category: <span class="text-primary font-italic">{{ $category->name }}</span></h2>
          <form action="{{ route('admin.categories.update', $category) }}" method="POST">
             @csrf
             @method('PUT')

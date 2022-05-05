@@ -7,7 +7,7 @@
    <div class="row justify-content-center">
       <div class="col-5">
 
-         <h2 class="mb-4">Edit post: {{ $post->title }}</h2>
+         <h2 class="mb-4">Edit post: <span class="text-primary font-italic">{{ $post->title }}</span></h2>
          <form action="{{ route('admin.posts.update', $post) }}" method="POST">
             @csrf
             @method('PUT')

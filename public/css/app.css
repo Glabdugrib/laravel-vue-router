@@ -10973,6 +10973,7 @@ td {
 th {
   padding: 5px 20px !important;
   background-color: rgba(0, 128, 0, 0.3);
+  white-space: nowrap;
 }
 
 td {

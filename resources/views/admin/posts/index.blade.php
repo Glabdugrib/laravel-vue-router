@@ -11,7 +11,7 @@
          <th>Slug</th>
          <th>Category</th>
          {{-- <th>Content</th> --}}
-         <th>Cover</th>
+         {{-- <th>Cover</th> --}}
          <th>Published at</th>
          <th>Created at</th>
          <th>Updated at</th>
@@ -25,7 +25,7 @@
             <td>{{ $el->slug }}</td>
             <td>{{ $el->category ? $el->category->name : '-' }}</td>
             {{-- <td>{{ $el->content }}</td> --}}
-            <td>{{ $el->cover }}</td>
+            {{-- <td>{{ $el->cover ? $el->cover : '-' }}</td> --}}
             <td>{{ substr($el->published_at, 0, 10) }}</td>
             <td>{{ substr($el->created_at, 0, 10) }}</td>
             <td>{{ substr($el->updated_at, 0, 10) }}</td>
