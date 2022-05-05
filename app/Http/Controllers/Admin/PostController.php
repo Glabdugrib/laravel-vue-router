@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Post;
 use App\Category;
+use App\Tag;
 use Illuminate\Http\Request;
 // use Illuminate\Support\Str;
 
@@ -30,7 +31,8 @@ class PostController extends Controller
    public function create()
    {
       $categories = Category::orderBy('name')->get();
-      return view('admin.posts.create', compact('categories'));
+      $tags = Tag::orderBy('name')->get();
+      return view('admin.posts.create', compact(['categories', 'tags']));
    }
 
    /**
@@ -45,10 +47,13 @@ class PostController extends Controller
          'title' => 'required|string|min:5|max:100',
          'content' => 'required|string|min:5|max:1000',
          'published_at' => 'nullable|date|before_or_equal:today',
-         'category_id' => 'nullable|exists:categories,id'
+         'category_id' => 'nullable|exists:categories,id',
+         'tags.*' => 'exists:tags,id'
       ]);
 
       $data = $request->all();
+
+      // dd($data['tags']);
 
       $slug = Post::getUniqueSlug( $data['title'] );
 
@@ -58,6 +63,12 @@ class PostController extends Controller
       $post->slug = $slug;
 
       $post->save();
+
+      if( array_key_exists('tags', $data) ) {
+         $post->tags()->sync( $data['tags'] );
+      } else {
+         $post->tags()->sync([]);
+      }
 
       return redirect()->route('admin.posts.index');
 
@@ -83,7 +94,8 @@ class PostController extends Controller
    public function edit(Post $post)
    {
       $categories = Category::orderBy('name')->get();
-      return view('admin.posts.edit', compact(['post', 'categories']));
+      $tags = Tag::orderBy('name')->get();
+      return view('admin.posts.edit', compact(['post', 'categories', 'tags']));
    }
 
    /**
@@ -99,10 +111,13 @@ class PostController extends Controller
          'title' => 'required|string|min:5|max:100',
          'content' => 'required|string|min:5|max:1000',
          'published_at' => 'nullable|date|before_or_equal:today',
-         'category_id' => 'nullable|exists:categories,id'
+         'category_id' => 'nullable|exists:categories,id',
+         'tags.*' => 'exists:tags,id'
       ]);
 
       $data = $request->all();
+
+      // dd($data['tags']);
 
       if( $post->title != $data['title'] ) {
          $slug = Post::getUniqueSlug( $data['title'] );
@@ -110,6 +125,12 @@ class PostController extends Controller
       }
 
       $post->update( $data );
+
+      if( array_key_exists('tags', $data) ) {
+         $post->tags()->sync( $data['tags'] );
+      } else {
+         $post->tags()->sync([]);
+      }
 
       return redirect()->route('admin.posts.index');
    }

@@ -38,15 +38,7 @@ class CreatePostTagTable extends Migration
     * @return void
     */
    public function down()
-   {
-      $table->dropPrimary(['post_id', 'tag_id']);
-
-      $table->dropForeign('tag_id');
-      $table->dropColumn('tag_id');
-
-      $table->dropForeign('post_id');
-      $table->dropColumn('post_id');
-      
+   {      
       Schema::dropIfExists('post_tag');
    }
 }

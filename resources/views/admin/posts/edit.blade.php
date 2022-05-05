@@ -37,6 +37,20 @@
                @enderror
             </div>
 
+            {{-- Tag --}}
+            <div>
+               <label>Tags</label>
+               @foreach ($tags as $el)
+                  <div class="form-check form-group">
+                     <input class="form-check-input" {{ $post->tags->contains( $el ) ? 'checked' : '' }} type="checkbox" value="{{ $el->id }}" name="tags[]" id="tag-{{ $el->id }}">
+                     <label class="form-check-label" for="tag-{{ $el->id }}">{{ $el->name }}</label>
+                  </div>
+               @endforeach
+               @error('tags.*')
+                  <div class="text-danger">The selected tag is invalid.</div>
+               @enderror
+            </div>
+
             {{-- Contenuto --}}
             <div class="form-group">
                <label for="name" class="form-label">Content</label>

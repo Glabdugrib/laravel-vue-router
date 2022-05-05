@@ -37,17 +37,17 @@
             </div>
 
             {{-- Tag --}}
-            <div class="form-group">
+            <div>
                <label>Tags</label>
-               {{-- @foreach ($collection as $item)
-                   
-               @endforeach --}}
-               <div class="form-check">
-                  <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                  <label class="form-check-label" for="defaultCheck1">
-                    Default checkbox
-                  </label>
-                </div>
+               @foreach ($tags as $el)
+                  <div class="form-check form-group">
+                     <input class="form-check-input" type="checkbox" value="{{ $el->id }}" name="tags[]" id="tag-{{ $el->id }}">
+                     <label class="form-check-label" for="tag-{{ $el->id }}">{{ $el->name }}</label>
+                  </div>
+               @endforeach
+               @error('tags.*')
+                  <div class="text-danger">The selected tag is invalid.</div>
+               @enderror
             </div>
 
             {{-- Contenuto --}}

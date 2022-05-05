@@ -35,7 +35,8 @@ class PostSeeder extends Seeder
 
          $post->save();
 
-         $post->tags()->sync( $faker->randomElements( $tagsId, 2 ) );
+         $tagsNum = $faker->numberBetween(0, 2);
+         $post->tags()->sync( $faker->randomElements( $tagsId, $tagsNum ) );
       }
    }
 }
