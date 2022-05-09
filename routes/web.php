@@ -34,4 +34,9 @@ Route::middleware('auth')
    Route::resource('categories', 'CategoryController')->except('show');
 
    Route::resource('tags', 'TagController')->except('show');
+
+});
+
+Route::fallback(function() {
+   return view('guest.home');
 });
