@@ -1,7 +1,8 @@
 <template>
    <div class="card">
       <figure class="thumb">
-         <img :src="`https://picsum.photos/${ (200 + i) * 2 }/${ 200 + i }`" alt="">
+         <img src="https://picsum.photos/400/200" alt="">
+         <!-- <img :src="`https://picsum.photos/${ (200 + i) * 2 }/${ 200 + i }`" alt=""> -->
       </figure>
       <div class="card-body">
          <h3 class="title">{{ post.title }}</h3>

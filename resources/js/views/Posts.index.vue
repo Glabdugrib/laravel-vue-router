@@ -4,7 +4,19 @@
          <PostCard v-for="post in posts" :key="post.id" :post="post" :i="post.id"/>
       </div>
       <ul class="paginate-wrapper" v-if="lastPage > 1">
-         <li :class="[currentPage === n ? 'active' : '','page-btn']" v-for="n in lastPage" :key="n" @click="fetchPosts(n)">{{ n }}</li>
+         <!-- Normal pagination -->
+         <!-- <li :class="[currentPage === n ? 'active' : '','page-btn']" v-for="n in lastPage" :key="n" @click="fetchPosts(n)">{{ n }}</li> -->
+         
+         <!-- Advanced pagination -->
+         <li :class="[currentPage === 1 ? 'active' : '','page-btn']" @click="fetchPosts()">1</li>
+         <li class="page-dots" v-if="currentPage - 2 > 2">...</li>
+         <li class="page-btn" v-if="currentPage - 2 > 1" @click="fetchPosts(currentPage - 2)">&lt;&lt;</li>
+         <li class="page-btn" v-if="currentPage - 1 > 1" @click="fetchPosts(currentPage - 1)">&lt;</li>
+         <li class="page-btn active" v-if="currentPage > 1 && currentPage < lastPage" @click="fetchPosts(currentPage - 1)">{{ currentPage }}</li>
+         <li class="page-btn" v-if="currentPage + 1 < lastPage" @click="fetchPosts(currentPage + 1)">&gt;</li>
+         <li class="page-btn" v-if="currentPage + 2 < lastPage" @click="fetchPosts(currentPage + 2)">&gt;&gt;</li>
+         <li class="page-dots"  v-if="currentPage + 2 < lastPage - 1">...</li>
+         <li :class="[currentPage === lastPage ? 'active' : '','page-btn']" @click="fetchPosts(lastPage)">{{ lastPage }}</li>
       </ul>
    </div>
 </template>

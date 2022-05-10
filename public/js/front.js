@@ -1923,6 +1923,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'PostCard',
   props: {
@@ -1974,6 +1975,18 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_PostCard_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../components/PostCard.vue */ "./resources/js/components/PostCard.vue");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -2514,15 +2527,7 @@ var render = function () {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "card" }, [
-    _c("figure", { staticClass: "thumb" }, [
-      _c("img", {
-        attrs: {
-          src:
-            "https://picsum.photos/" + (200 + _vm.i) * 2 + "/" + (200 + _vm.i),
-          alt: "",
-        },
-      }),
-    ]),
+    _vm._m(0),
     _vm._v(" "),
     _c("div", { staticClass: "card-body" }, [
       _c("h3", { staticClass: "title" }, [_vm._v(_vm._s(_vm.post.title))]),
@@ -2552,7 +2557,16 @@ var render = function () {
     ]),
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("figure", { staticClass: "thumb" }, [
+      _c("img", { attrs: { src: "https://picsum.photos/400/200", alt: "" } }),
+    ])
+  },
+]
 render._withStripped = true
 
 
@@ -2614,26 +2628,119 @@ var render = function () {
       : _vm._e(),
     _vm._v(" "),
     _vm.lastPage > 1
-      ? _c(
-          "ul",
-          { staticClass: "paginate-wrapper" },
-          _vm._l(_vm.lastPage, function (n) {
-            return _c(
-              "li",
-              {
-                key: n,
-                class: [_vm.currentPage === n ? "active" : "", "page-btn"],
-                on: {
-                  click: function ($event) {
-                    return _vm.fetchPosts(n)
-                  },
+      ? _c("ul", { staticClass: "paginate-wrapper" }, [
+          _c(
+            "li",
+            {
+              class: [_vm.currentPage === 1 ? "active" : "", "page-btn"],
+              on: {
+                click: function ($event) {
+                  return _vm.fetchPosts()
                 },
               },
-              [_vm._v(_vm._s(n))]
-            )
-          }),
-          0
-        )
+            },
+            [_vm._v("1")]
+          ),
+          _vm._v(" "),
+          _vm.currentPage - 2 > 2
+            ? _c("li", { staticClass: "page-dots" }, [_vm._v("...")])
+            : _vm._e(),
+          _vm._v(" "),
+          _vm.currentPage - 2 > 1
+            ? _c(
+                "li",
+                {
+                  staticClass: "page-btn",
+                  on: {
+                    click: function ($event) {
+                      return _vm.fetchPosts(_vm.currentPage - 2)
+                    },
+                  },
+                },
+                [_vm._v("<<")]
+              )
+            : _vm._e(),
+          _vm._v(" "),
+          _vm.currentPage - 1 > 1
+            ? _c(
+                "li",
+                {
+                  staticClass: "page-btn",
+                  on: {
+                    click: function ($event) {
+                      return _vm.fetchPosts(_vm.currentPage - 1)
+                    },
+                  },
+                },
+                [_vm._v("<")]
+              )
+            : _vm._e(),
+          _vm._v(" "),
+          _vm.currentPage > 1 && _vm.currentPage < _vm.lastPage
+            ? _c(
+                "li",
+                {
+                  staticClass: "page-btn active",
+                  on: {
+                    click: function ($event) {
+                      return _vm.fetchPosts(_vm.currentPage - 1)
+                    },
+                  },
+                },
+                [_vm._v(_vm._s(_vm.currentPage))]
+              )
+            : _vm._e(),
+          _vm._v(" "),
+          _vm.currentPage + 1 < _vm.lastPage
+            ? _c(
+                "li",
+                {
+                  staticClass: "page-btn",
+                  on: {
+                    click: function ($event) {
+                      return _vm.fetchPosts(_vm.currentPage + 1)
+                    },
+                  },
+                },
+                [_vm._v(">")]
+              )
+            : _vm._e(),
+          _vm._v(" "),
+          _vm.currentPage + 2 < _vm.lastPage
+            ? _c(
+                "li",
+                {
+                  staticClass: "page-btn",
+                  on: {
+                    click: function ($event) {
+                      return _vm.fetchPosts(_vm.currentPage + 2)
+                    },
+                  },
+                },
+                [_vm._v(">>")]
+              )
+            : _vm._e(),
+          _vm._v(" "),
+          _vm.currentPage + 2 < _vm.lastPage - 1
+            ? _c("li", { staticClass: "page-dots" }, [_vm._v("...")])
+            : _vm._e(),
+          _vm._v(" "),
+          _c(
+            "li",
+            {
+              class: [
+                _vm.currentPage === _vm.lastPage ? "active" : "",
+                "page-btn",
+              ],
+              on: {
+                click: function ($event) {
+                  return _vm.fetchPosts(_vm.lastPage)
+                },
+              },
+            },
+            [_vm._v(_vm._s(_vm.lastPage))]
+          ),
+        ])
       : _vm._e(),
   ])
 }

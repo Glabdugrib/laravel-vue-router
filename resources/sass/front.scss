@@ -84,26 +84,34 @@ body {
 
 .paginate-wrapper {
    display: flex;
-   gap: 30px;
+   gap: 20px;
    justify-content: center;
    padding: 30px;
 
-   .page-btn {
-      width: 40px;
+   & > li {
+      width: 35px;
       aspect-ratio: 1;
       display: flex;
       justify-content: center;
       align-items: center;
+   }
+
+   .page-btn {
+      
       border-radius: 50%;
-      background-color: rgba($color: black, $alpha: 0.3);
+      background-color: rgba($color: black, $alpha: 0.2);
       cursor: pointer;
 
       &:hover {
-         background-color: rgba($color: black, $alpha: 0.5);
+         background-color: rgba($color: black, $alpha: 0.3);
       }
 
       &.active {
-         background-color: orange;
+         background-color: rgba(255, 166, 0, 0.8);
       }
+   }
+
+   .page-dots {
+
    }
 }

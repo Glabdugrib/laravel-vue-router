@@ -84,27 +84,30 @@ body {
 
 .paginate-wrapper {
   display: flex;
-  gap: 30px;
+  gap: 20px;
   justify-content: center;
   padding: 30px;
 }
 
-.paginate-wrapper .page-btn {
-  width: 40px;
+.paginate-wrapper > li {
+  width: 35px;
   aspect-ratio: 1;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.paginate-wrapper .page-btn {
   border-radius: 50%;
-  background-color: rgba(0, 0, 0, 0.3);
+  background-color: rgba(0, 0, 0, 0.2);
   cursor: pointer;
 }
 
 .paginate-wrapper .page-btn:hover {
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.3);
 }
 
 .paginate-wrapper .page-btn.active {
-  background-color: orange;
+  background-color: rgba(255, 166, 0, 0.8);
 }
 

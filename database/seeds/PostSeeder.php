@@ -23,7 +23,7 @@ class PostSeeder extends Seeder
       $tags = Tag::all();
       $tagsId = $tags->pluck('id')->all();
 
-      for ($i=0; $i < 100 ; $i++) { 
+      for ($i=0; $i < 300 ; $i++) { 
 
          $post = new Post();
 
