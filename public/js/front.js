@@ -1914,11 +1914,24 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'PostCard',
   props: {
     post: {
       type: Object,
+      required: false
+    },
+    i: {
+      type: Number,
       required: false
     }
   }
@@ -1936,7 +1949,6 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Posts_index_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Posts.index.vue */ "./resources/js/views/Posts.index.vue");
-//
 //
 //
 //
@@ -1962,7 +1974,6 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_PostCard_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../components/PostCard.vue */ "./resources/js/components/PostCard.vue");
-//
 //
 //
 //
@@ -2502,7 +2513,44 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [_c("h3", [_vm._v(_vm._s(_vm.post.title))])])
+  return _c("div", { staticClass: "card" }, [
+    _c("figure", { staticClass: "thumb" }, [
+      _c("img", {
+        attrs: {
+          src:
+            "https://picsum.photos/" + (200 + _vm.i) * 2 + "/" + (200 + _vm.i),
+          alt: "",
+        },
+      }),
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "card-body" }, [
+      _c("h3", { staticClass: "title" }, [_vm._v(_vm._s(_vm.post.title))]),
+      _vm._v(" "),
+      _vm.post.category
+        ? _c("p", { staticClass: "category" }, [
+            _vm._v(_vm._s(_vm.post.category.name)),
+          ])
+        : _vm._e(),
+      _vm._v(" "),
+      _c(
+        "ul",
+        { staticClass: "tag-wrapper" },
+        _vm._l(_vm.post.tags, function (tag) {
+          return _c(
+            "li",
+            {
+              key: tag.id,
+              staticClass: "tag",
+              style: "background-color: " + tag.color,
+            },
+            [_vm._v(_vm._s(tag.name))]
+          )
+        }),
+        0
+      ),
+    ]),
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -2526,7 +2574,7 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [_vm._v("\n   Is working!\n   "), _c("Posts")], 1)
+  return _c("div", [_c("Posts")], 1)
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -2550,35 +2598,43 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
+  return _c("div", { staticClass: "container" }, [
     _vm.posts
       ? _c(
-          "ul",
+          "div",
+          { staticClass: "card-wrapper" },
           _vm._l(_vm.posts, function (post) {
-            return _c("PostCard", { key: post.id, attrs: { post: post } })
+            return _c("PostCard", {
+              key: post.id,
+              attrs: { post: post, i: post.id },
+            })
           }),
           1
         )
       : _vm._e(),
     _vm._v(" "),
-    _c(
-      "ul",
-      _vm._l(_vm.lastPage, function (n) {
-        return _c(
-          "li",
-          {
-            key: n,
-            on: {
-              click: function ($event) {
-                return _vm.fetchPosts(n)
+    _vm.lastPage > 1
+      ? _c(
+          "ul",
+          { staticClass: "paginate-wrapper" },
+          _vm._l(_vm.lastPage, function (n) {
+            return _c(
+              "li",
+              {
+                key: n,
+                class: [_vm.currentPage === n ? "active" : "", "page-btn"],
+                on: {
+                  click: function ($event) {
+                    return _vm.fetchPosts(n)
+                  },
+                },
               },
-            },
-          },
-          [_vm._v(_vm._s(n))]
+              [_vm._v(_vm._s(n))]
+            )
+          }),
+          0
         )
-      }),
-      0
-    ),
+      : _vm._e(),
   ])
 }
 var staticRenderFns = []

@@ -1,6 +1,5 @@
 <template>
    <div>
-      Is working!
       <Posts />
    </div>
 </template>

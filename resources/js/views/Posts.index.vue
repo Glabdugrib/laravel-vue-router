@@ -1,11 +1,10 @@
 <template>
-   <div>
-      <ul v-if="posts">
-         <PostCard v-for="post in posts" :key="post.id" :post="post" />
-         <!-- <li v-for="post in posts" :key="post.id">{{ post.title }}</li> -->
-      </ul>
-      <ul>
-         <li v-for="n in lastPage" :key="n" @click="fetchPosts(n)">{{ n }}</li>
+   <div class="container">
+      <div class="card-wrapper" v-if="posts">
+         <PostCard v-for="post in posts" :key="post.id" :post="post" :i="post.id"/>
+      </div>
+      <ul class="paginate-wrapper" v-if="lastPage > 1">
+         <li :class="[currentPage === n ? 'active' : '','page-btn']" v-for="n in lastPage" :key="n" @click="fetchPosts(n)">{{ n }}</li>
       </ul>
    </div>
 </template>

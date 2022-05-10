@@ -10,8 +10,8 @@
    <title>{{ config('app.name', 'Laravel') }}</title>
 
    <!-- Styles -->
-   <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-   <script src="https://cdn.tailwindcss.com"></script>
+   {{-- <script src="https://cdn.tailwindcss.com"></script> --}}
+   <link href="{{ asset('css/front.css') }}" rel="stylesheet">
 </head>
 <body>
    

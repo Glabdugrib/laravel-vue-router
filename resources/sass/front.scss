@@ -1,0 +1,109 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap');
+
+* {
+   padding: 0;
+   margin: 0;
+   box-sizing: border-box;
+}
+
+ul, ol {
+   list-style: none;
+}
+
+html {
+   font-family: 'Roboto', sans-serif;
+}
+
+body {
+   padding: 50px 0;
+}
+
+.container {
+   width: 1200px;
+   margin: 0 auto;
+}
+
+.card-wrapper {
+   display: flex;
+   flex-wrap: wrap;
+   gap: 30px 20px;
+
+   .card {
+      width: calc( ( 100% - 20px * 2 ) / 3);
+      // border: 1px solid rgba($color: black, $alpha: 0.2);
+      border-radius: 5px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 0 20px 0px rgba($color: black, $alpha: 0.2);
+
+      .thumb {
+         width: 100%;
+         aspect-ratio: 2;
+
+         img {
+            display: block;
+            max-width: 100%;
+            object-fit: cover;
+         }
+      }
+
+      .card-body {
+         padding: 20px;
+         display: flex;
+         flex-direction: column;
+         justify-content: space-around;
+         gap: 20px;
+         flex-grow: 1;
+
+         .title {
+            text-transform: capitalize;
+         }
+   
+         .category {
+            color: orangered;
+         }
+   
+         .tag-wrapper {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+   
+            .tag {
+               color: white;
+               display: inline-block;
+               padding: 2px 10px;
+               border-radius: 15px;
+               font-size: 0.8rem;
+            }
+         }
+      }
+      
+   }
+}
+
+.paginate-wrapper {
+   display: flex;
+   gap: 30px;
+   justify-content: center;
+   padding: 30px;
+
+   .page-btn {
+      width: 40px;
+      aspect-ratio: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 50%;
+      background-color: rgba($color: black, $alpha: 0.3);
+      cursor: pointer;
+
+      &:hover {
+         background-color: rgba($color: black, $alpha: 0.5);
+      }
+
+      &.active {
+         background-color: orange;
+      }
+   }
+}
