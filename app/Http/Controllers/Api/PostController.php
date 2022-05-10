@@ -13,7 +13,7 @@ class PostController extends Controller
     *
     * @return \Illuminate\Http\Response
     */
-   public function index($page)
+   public function index()
    {
       $posts = Post::with(['category', 'tags'])
          ->where('published_at','!=',null)
