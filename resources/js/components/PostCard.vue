@@ -10,6 +10,7 @@
          <ul class="tag-wrapper">
             <li class="tag" :style="`background-color: ${ tag.color }`" v-for="tag in post.tags" :key="tag.id">{{ tag.name }}</li>
          </ul>
+         <router-link tag="button" :to="{ name: 'posts.show', params: { slug: post.slug } }">View</router-link>
       </div>
    </div>
 </template>

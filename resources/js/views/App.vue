@@ -1,16 +1,17 @@
 <template>
    <div>
-      <Posts />
+      <ul>
+         <li><router-link :to="{ name: 'posts.index' }">Posts</router-link></li>
+         <li><router-link :to="{ name: 'contact' }">Contact</router-link></li>
+      </ul>
+      <router-view></router-view>
    </div>
 </template>
 
 <script>
-import Posts from './Posts.index.vue';
 
 export default {
-   components: {
-      Posts,
-   }
+
 }
 </script>
 

@@ -15,7 +15,9 @@
 </head>
 <body>
    
-   <div id="root"></div>
+   <div id="root">
+      <router-view></router-view>
+   </div>
 
    <script src="{{ asset('js/front.js') }}"></script>
 </body>
